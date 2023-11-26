@@ -9,8 +9,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import springbott.demo.Pojos.CityRequest;
+import springbott.demo.Pojos.CourseRequest;
 import springbott.demo.entities.City;
+import springbott.demo.entities.Course;
 import springbott.demo.services.CityService;
+import springbott.demo.services.CourseService;
 
 @RestController
 public class HomeController {
@@ -18,6 +21,9 @@ public class HomeController {
   @Autowired
   CityService cityService;
   
+  @Autowired
+  CourseService courseService;
+
   @GetMapping("/sayhello")
   public String sayHello() {
     return "Hello user";
@@ -41,5 +47,9 @@ public class HomeController {
   @PostMapping("savecity")
   public City addCity(@RequestBody CityRequest cityRequest) {
     return cityService.addCity(cityRequest);
+  }
+  @PostMapping("addcourse")
+  public Course addCourse(@RequestBody CourseRequest courseRequest) {
+    return courseService.addCourseWithContents(courseRequest);
   }
 }
